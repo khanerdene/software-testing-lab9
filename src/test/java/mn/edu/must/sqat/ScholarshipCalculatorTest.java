@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class ScholarshipCalculatorTest {
 
@@ -13,6 +15,23 @@ public class ScholarshipCalculatorTest {
     @Test
     void letterGradeReturnsExpectedLetter() {
         assertEquals("A", calc.letterGrade(100));
+    }
+
+    @ParameterizedTest 
+    @CsvSource({
+        "A, 100",
+        "A, 90",
+        "B, 89.99",
+        "B, 80",
+        "C, 79.99",
+        "C, 70",
+        "D, 69.99",
+        "D, 60",
+        "F, 59.99",
+        "F, 0"
+    })
+    void letterGradeParametrizedTest(String grade, double score) {
+        assertEquals(grade, calc.letterGrade(score));
     }
 
     @Test
