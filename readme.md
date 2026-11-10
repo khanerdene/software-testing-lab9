@@ -50,22 +50,26 @@ LINE_COVERED: 25 <br>
 
 Давталтын заагын тестүүд:
 ```java
+// null
 @Test
 void gpaThrowsForNullArray() {
     assertThrows(IllegalArgumentException.class, () -> calc.gpa(null));
 }
 
+// 0
 @Test 
 void gpaThrowsForEmptyArray() {
     assertThrows(IllegalArgumentException.class, () -> calc.gpa(new double[0]));
 }
 
+// 1
 @Test
 void gpaReturnsCorrectlyForOneValue() {
     double[] scores = {95};
     assertEquals(4.0, calc.gpa(scores), 0.0001);
 }
 
+ // 2+
 @Test
 void gpaReturnsAverageOfLetterGradePoints() {
     double[] scores = {95, 85, 75, 65, 50};
